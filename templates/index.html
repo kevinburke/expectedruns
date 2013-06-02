@@ -30,6 +30,37 @@
           <div class="container clearfix">
             <h1 class="headline">How many runs will your team score?</h1>
 
+						{{range .Outs}}
+						<div class="out-container row">
+							<div class="out-label span2">
+								<h3>{{.FriendlyName}}</h3>
+							</div>
+							<div class="stats-container span10">
+								{{range .Stats}}
+								{{if .Id | startNewRow }}
+								<div class="row">
+								{{end}}
+									<div class="stats span5 clearfix">
+										<div class="row">
+											<div class="diamonds span1">
+												<div class="diamond{{if .Id | onFirstBase }} full{{end}}">
+												</div>
+												<div class="diamond{{if .Id | onSecondBase }} full{{end}}">
+												</div>
+												<div class="diamond{{if .Id | onThirdBase }} full{{end}}">
+												</div>
+											</div>
+											<div class="numbers span4">
+												<div><span class="stat">{{.ScoringChance | addPercent}}</span> chance of scoring</div>
+												<div><span class="stat">{{.ExpectedRuns | roundDecimal}}</span> expected runs</div>
+											</div>
+										</div>
+									</div>
+									{{if .Id | startNewRow }}{{else}}</div>{{end}}
+								{{end}}
+							</div>
+						</div>
+						{{end}}
             <div class="out-container row">
               <div class="out-label span2">
                 <h3>No Outs</h3>
@@ -69,7 +100,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="row">
+                <div class="stats-row row">
                   <div class="stats span5 clearfix">
                     <div class="row">
                       <div class="diamonds span1">
@@ -103,6 +134,40 @@
                     </div>
                   </div>
                 </div>
+								<div class="stats-row row">
+									<div class="stats span5 clearfix">
+										<div class="row">
+											<div class="diamonds span1">
+												<div class="diamond">
+												</div>
+												<div class="diamond">
+												</div>
+												<div class="diamond">
+												</div>
+											</div>
+											<div class="numbers span4">
+												<div><span class="stat">29%</span> chance of scoring</div>
+												<div><span class="stat">.54</span> expected runs</div>
+											</div>
+										</div>
+									</div>
+									<div class="stats span5">
+										<div class="row">
+											<div class="diamonds span1">
+												<div class="diamond">
+												</div>
+												<div class="diamond">
+												</div>
+												<div class="diamond">
+												</div>
+											</div>
+											<div class="numbers span4">
+												<div><span class="stat">29%</span> chance of scoring</div>
+												<div><span class="stat">.54</span> expected runs</div>
+											</div>
+										</div>
+									</div>
+								</div>
               </div>
             </div>
           </div>
