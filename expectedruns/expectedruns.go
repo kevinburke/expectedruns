@@ -1,11 +1,12 @@
 package expectedruns
 
 import (
-	//"appengine"
+	"appengine"
+	"encoding/json"
 	"fmt"
 	"html/template"
+	"io/ioutil"
 	"net/http"
-	//"path/filepath"
 )
 
 func init() {
@@ -28,9 +29,23 @@ type Outs struct {
 }
 
 func root(w http.ResponseWriter, r *http.Request) {
-	//c := appengine.NewContext(r)
+	c := appengine.NewContext(r)
 
-	//c.Infof(path)
+	var o Outs
+	b, err := ioutil.ReadFile("var/stats.json")
+	if err != nil {
+		fmt.Fprint(w, "there was an error reading the file: "+err.Error())
+		return
+	}
+
+	err = json.Unmarshal(b, &o)
+	if err != nil {
+		fmt.Fprint(w, "there was an error: "+err.Error())
+		return
+	}
+	b, err = json.Marshal(o)
+	c.Infof(string(b))
+
 	t := template.New("master")
 	tpl, err := t.ParseFiles("templates/index.html")
 	if err != nil {
