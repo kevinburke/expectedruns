@@ -208,9 +208,36 @@ $diamondSize: 14px;
     font-family: Consolas, monospace;
 }
 
+.numbers {
+    display: inline-block;
+}
 
+@media (max-width: 767px) {
+    .headline {
+        font-size: 30px;
+        margin-bottom: 20px;
+    }
 
+    h3 {
+        font-size: 18px;
+    }
 
+    .stats {
+        margin-bottom: 20px;
+    }
+
+    .diamonds {
+        display: inline;
+        float: left;
+        width: auto;
+    }
+
+    .numbers {
+        float: left;
+        width: auto;
+        margin-left: 50px;
+    }
+}
 
 
 
