@@ -9,6 +9,9 @@ handlers:
 - url: /humans.txt
   static_files: humans.txt
   upload: humans.txt
+- url: /favicon.ico
+  static_files: img/favicon.ico
+  upload: img/favicon.ico
 - url: /js
   static_dir: js
 - url: /.*
