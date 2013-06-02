@@ -1,6 +1,6 @@
 #!/usr/bin/env observr
 
-main = "sass --style compressed scss/main.scss > style.css"
+main = "sass --style compressed scss/main.scss > css/style.css"
 home = "sass --style compressed scss/home.scss > css/home.css"
 blog = "sass --style compressed scss/blog.scss > css/blog.css"
 twitter = "sass --style compressed scss/twitter.scss > css/twitter.css"
