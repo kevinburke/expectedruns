@@ -46,6 +46,8 @@ func roundDecimal(runs float64) string {
 	return strconv.FormatFloat(runs, 'f', 2, 64)
 }
 
+// XXX, investigate doing something neat with partials to turn these into one
+// function.
 func onFirstBase(id int) bool {
 	return id&1 == 1
 }
