@@ -1,0 +1,13 @@
+# humanstxt.org
+
+Developer, writer, designer, troubleshooter: Kevin Burke
+Contact: kev@inburke.com
+Twitter: @ekrubnivek
+From   : Alamo, CA, USA
+
+/* Site */
+Language: English
+Tools: Go, HTML, SCSS, CSS, Bootstrap
+Deploys: App Engine
+IDE: Vim
+Theme: http://github.com/kevinburke/expectedruns
