@@ -43,12 +43,10 @@
 							<div class="stats span5 clearfix">
 								<div class="row">
 									<div class="diamonds span1">
-										<div class="diamond{{if .Id | onFirstBase }} full{{end}}">
-										</div>
-										<div class="diamond{{if .Id | onSecondBase }} full{{end}}">
-										</div>
-										<div class="diamond{{if .Id | onThirdBase }} full{{end}}">
-										</div>
+										<!-- stupidly in the css, this is third base -->
+										<div class="diamond{{if .Id | onThirdBase }} full{{end}}"></div>
+										<div class="diamond{{if .Id | onSecondBase }} full{{end}}"></div>
+										<div class="diamond{{if .Id | onFirstBase }} full{{end}}"></div>
 									</div>
 									<div class="numbers span4">
 										<div><span class="stat">{{.ScoringChance | addPercent}}</span> chance of scoring</div>
