@@ -168,10 +168,16 @@ $gold: #ffbe00;
 body {
     background-color: $green;
     color: #fff;
+    font-family: "Oxygen", serif;
 }
 
 .headline {
     margin-bottom: 50px;
+    font-family: "Arvo", serif;
+}
+
+.out-container {
+    margin-bottom: 30px;
 }
 
 $diamondSize: 11px;
@@ -214,7 +220,7 @@ $diamondSize: 11px;
 }
 
 .stat {
-    font-family: Consolas, monospace;
+    font-family: "Droid Sans", Consolas, "Andale Mono", Monaco, Menlo, monospace;
 }
 
 .numbers {
