@@ -174,15 +174,15 @@ body {
     margin-bottom: 50px;
 }
 
-$diamondSize: 14px;
+$diamondSize: 11px;
 .diamond {
-    background: $gold;
     display: block;
     height: $diamondSize;
     width: $diamondSize;
     overflow: hidden;
     position: relative;
     text-decoration: none;
+    border: 2px solid $gold;
 
     .csstransforms & {
         overflow: hidden;
@@ -194,14 +194,22 @@ $diamondSize: 14px;
     }
 
     &:nth-child(2) {
-        margin-left: 12px;
-        margin-top: -26px;
+        margin-left: 13px;
+        margin-top: -28px;
     }
 
     &:nth-child(3) {
-        margin-left: 24px;
+        margin-left: 26px;
         margin-top: -2px;
     }
+
+    &.full {
+        background: $gold;
+    }
+}
+
+.stats {
+    margin-bottom: 20px;
 }
 
 .stat {
@@ -220,10 +228,6 @@ $diamondSize: 14px;
 
     h3 {
         font-size: 18px;
-    }
-
-    .stats {
-        margin-bottom: 20px;
     }
 
     .diamonds {
