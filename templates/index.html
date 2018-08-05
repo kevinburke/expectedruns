@@ -30,7 +30,7 @@
 			<div class="container clearfix">
 				<h1 class="headline">How many runs will your team score?</h1>
 
-				{{range .Outs}}
+				{{range .Stats }}
 				<div class="out-container row">
 					<div class="out-label span2">
 						<h3>{{.FriendlyName}}</h3>
@@ -65,7 +65,9 @@
 		<div class="container">
 			<div class="footer row">
 				<div class="span6 offset6 footer-copy">
-					Data via <a href="http://www.stats.com/pdfs/MLB_ITN_runExpectancy.pdf">Stats.com</a>.&nbsp;&nbsp;&nbsp; Made by <a href="http://kev.inburke.com">Kevin Burke</a>.&nbsp;&nbsp;&nbsp; <a class="small" href="https://github.com/kevinburke/expectedruns">View the source</a>
+					Data via <a href="http://www.stats.com/pdfs/MLB_ITN_runExpectancy.pdf">Stats.com</a>.&nbsp;&nbsp;&nbsp; Made by <a href="http://kev.inburke.com">Kevin Burke</a>.
+					<br />
+					Compiled using {{ .Version }}. <a class="small" href="https://github.com/kevinburke/expectedruns">View the source</a>
 				</div>
 			</div>
 		</div>

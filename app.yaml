@@ -1,6 +1,5 @@
-application: expectedruns
-version: 1
 runtime: go
+env: standard
 api_version: go1
 
 handlers:

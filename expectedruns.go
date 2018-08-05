@@ -2,40 +2,19 @@ package expectedruns
 
 import (
 	//"appengine"
-	"encoding/json"
-	"fmt"
+
+	"bytes"
 	"html/template"
-	"io/ioutil"
+	"io"
 	"net/http"
-	"os"
+	"runtime"
 	"strconv"
+
+	expectedruns "github.com/kevinburke/expectedruns/lib"
 )
 
 func init() {
 	http.HandleFunc("/", root)
-}
-
-type Stat struct {
-	Id            int // Binary representation of the runners on base
-	ScoringChance float64
-	ExpectedRuns  float64
-}
-
-type Out struct {
-	FriendlyName string
-	Stats        []Stat
-}
-
-type Outs struct {
-	Outs []Out
-}
-
-func checkError(err error) {
-	if err != nil {
-		fmt.Println("Fatal error ", err.Error())
-		os.Exit(1)
-		return
-	}
 }
 
 func addPercent(chance float64) string {
@@ -64,20 +43,10 @@ func startNewRow(id int) bool {
 	return id%2 == 0
 }
 
-func root(w http.ResponseWriter, r *http.Request) {
-	//c := appengine.NewContext(r)
+var tpl *template.Template
+var td *templateData
 
-	var o Outs
-	b, err := ioutil.ReadFile("var/stats.json")
-	checkError(err)
-
-	err = json.Unmarshal(b, &o)
-	checkError(err)
-
-	b, err = json.Marshal(o)
-	checkError(err)
-	//c.Infof(string(b))
-
+func init() {
 	t := template.New("master")
 	t.Funcs(template.FuncMap{
 		"addPercent":   addPercent,
@@ -87,9 +56,27 @@ func root(w http.ResponseWriter, r *http.Request) {
 		"onThirdBase":  onThirdBase,
 		"startNewRow":  startNewRow,
 	})
-	tpl, err := t.ParseFiles("templates/index.html")
-	checkError(err)
+	var err error
+	tpl, err = t.ParseFiles("templates/index.html")
+	if err != nil {
+		panic(err)
+	}
+	td = &templateData{Version: runtime.Version(), Stats: expectedruns.Stats}
+}
 
-	err = tpl.Execute(w, o)
-	checkError(err)
+type templateData struct {
+	Version string
+	Stats   []expectedruns.Out
+}
+
+func root(w http.ResponseWriter, r *http.Request) {
+	buf := new(bytes.Buffer)
+	err := tpl.Execute(buf, td)
+	if err != nil {
+		w.WriteHeader(500)
+		io.WriteString(w, "An error occurred")
+		return
+	}
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+	io.Copy(w, buf)
 }
